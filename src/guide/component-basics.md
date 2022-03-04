@@ -1,6 +1,6 @@
 # Básico sobre Componentes
 
-<VideoLesson href="https://vueschool.io/courses/vue-js-3-components-fundamentals?friend=vuejs" title="Free Vue.js Components Fundamentals Course">Learn component basics with a free video course on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/courses/vue-js-3-components-fundamentals?friend=vuejs" title="Curso Gratuito de Fundamentos de Componentes em Vue.js">Aprenda o básico sobre componentes com um curso em vídeo gratuito na Vue School</VideoLesson>
 
 ## Exemplo Base
 
