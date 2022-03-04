@@ -1,20 +1,20 @@
-# Server Configuration
+# Configuração do Servidor
 
-The [code structure](./structure.html) and [webpack configuration](./build-config.html) we've described also require some changes to our Express server code.
+A [estrutura do código](./structure.html) e a [configuração do webpack](./build-config.html) que descrevemos também requerem algumas alterações no código do nosso servidor Express.
 
-- we need to create an application with a built `entry-server.js` from the resulting bundle. A path to it can be found using the webpack manifest:
+- precisamos criar um aplicativo com um `entry-server.js` construído a partir do pacote resultante. Um caminho para ele pode ser encontrado usando o _manifest_ do webpack:
 
   ```js
   // server.js
   const path = require('path')
   const manifest = require('./dist/server/ssr-manifest.json')
 
-  // the 'app.js' name is taken from the name of the entrypoint with an added `.js` postfix
+  // o nome 'app.js' é retirado do nome do ponto de entrada e mais um `.js`
   const appPath = path.join(__dirname, './dist', 'server', manifest['app.js'])
   const createApp = require(appPath).default
   ```
 
-- we have to define correct paths to all the assets:
+- temos que definir caminhos corretos para todos os _assets_:
 
   ```js
   // server.js
@@ -33,7 +33,7 @@ The [code structure](./structure.html) and [webpack configuration](./build-confi
   )
   ```
 
-- we need to replace the `index.html` content with our server-side rendered application content:
+- precisamos substituir o conteúdo de `index.html` pelo conteúdo do aplicativo renderizado no lado do servidor:
 
   ```js
   // server.js
@@ -56,7 +56,7 @@ The [code structure](./structure.html) and [webpack configuration](./build-confi
   })
   ```
 
-Below you can find a full code for our Express server:
+Abaixo você pode encontrar um código completo para o nosso servidor Express:
 
 ```js
 const path = require('path')
@@ -96,7 +96,7 @@ server.get('*', async (req, res) => {
   })
 })
 
-console.log('You can navigate to http://localhost:8080')
+console.log('Você pode navegar para http://localhost:8080')
 
 server.listen(8080)
 ```

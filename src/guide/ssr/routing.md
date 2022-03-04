@@ -1,10 +1,10 @@
-# Routing and Code-Splitting
+# Roteamento e Divisão de Código
 
-## Routing with `vue-router`
+## Roteamento com `vue-router`
 
-You may have noticed that our server code uses a `*` handler which accepts arbitrary URLs. This allows us to pass the visited URL into our Vue app, and reuse the same routing config for both client and server!
+Você deve ter notado que nosso código de servidor usa um manipulador `*` que aceita URLs arbitrários. Isso nos permite passar a URL visitada para nosso aplicativo Vue e reutilizar a mesma configuração de roteamento para cliente e servidor!
 
-It is recommended to use the official [vue-router](https://github.com/vuejs/vue-router-next) library for this purpose. Let's first create a file where we create the router. Note that similar to application instance, we also need a fresh router instance for each request, so the file exports a `createRouter` function:
+Recomenda-se usar a biblioteca oficial [vue-router](https://github.com/vuejs/vue-router-next) para esta finalidade. Vamos primeiro criar um arquivo onde criamos o roteador. Observe que, semelhante à instância do aplicativo, também precisamos de uma nova instância do roteador para cada solicitação, portanto, o arquivo exporta uma função `createRouter`:
 
 ```js
 // router.js
@@ -21,7 +21,7 @@ export default function (history) {
 }
 ```
 
-And update our client and server entries:
+E atualize nossas entradas de cliente e servidor:
 
 ```js
 // entry-client.js
@@ -44,7 +44,7 @@ app.use(router)
 ```js
 // entry-server.js
 import { createSSRApp } from 'vue'
-// server router uses a different history from the client one
+// o roteador do servidor usa um histórico diferente do cliente
 import { createMemoryHistory } from 'vue-router'
 import createRouter from './router.js'
 import App from './App.vue'
@@ -62,24 +62,24 @@ export default function () {
 }
 ```
 
-## Code-Splitting
+## Divisão de Código
 
-Code-splitting, or lazy-loading part of your app, helps reduce the size of assets that need to be downloaded by the browser for the initial render, and can greatly improve TTI (time-to-interactive) for apps with large bundles. The key is "loading just what is needed" for the initial screen.
+Dividir código, ou carregar preguiçosamente parte do seu aplicativo, ajuda a reduzir o tamanho dos _assets_ que precisam ser baixados pelo navegador para a renderização inicial e pode melhorar muito o TTI (tempo até a interatividade) para aplicativos com grandes pacotes. A chave é "carregar apenas o que é necessário" para a tela inicial.
 
-Vue Router provides [lazy-loading support](https://next.router.vuejs.org/guide/advanced/lazy-loading.html), allowing [webpack to code-split at that point](https://webpack.js.org/guides/code-splitting-async/). All you need to do is:
+O Vue Router fornece [suporte a carregamento preguiçoso](https://next.router.vuejs.org/guide/advanced/lazy-loading.html), permitindo o [webpack dividir o código naquele ponto](https://webpack.js.org/guides/code-splitting-async/). Tudo que você precisa fazer é:
 
 ```js
-// change this...
+// mude isso...
 import MyUser from './components/MyUser.vue'
 const routes = [{ path: '/user', component: MyUser }]
 
-// to this:
+// para isso:
 const routes = [
   { path: '/user', component: () => import('./components/MyUser.vue') }
 ]
 ```
 
-On both client and server we need to wait for the router to resolve async route components ahead of time in order to properly invoke in-component hooks. For this we will be using the [router.isReady](https://next.router.vuejs.org/api/#isready) method. Let's update our client entry:
+Tanto no cliente quanto no servidor, precisamos esperar que o roteador resolva os componentes de rota assíncrona antecipadamente para invocar corretamente os gatilhos no componente. Para isso, usaremos o método [router.isReady](https://next.router.vuejs.org/api/#isready). Vamos atualizar nossa entrada de cliente:
 
 ```js
 // entry-client.js
@@ -99,7 +99,7 @@ router.isReady().then(() => {
 })
 ```
 
-We also need to update our `server.js` script:
+Também precisamos atualizar nosso script `server.js`:
 
 ```js
 // server.js
