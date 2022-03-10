@@ -1,10 +1,10 @@
-# Automatic Global Registration of Base Components
+# Registro Global Automático de Componentes Base
 
-## Base Example
+## Exemplo Básico
 
-Many of your components will be relatively generic, possibly only wrapping an element like an input or a button. We sometimes refer to these as [base components](../style-guide/#base-component-names-strongly-recommended) and they tend to be used very frequently across your components.
+Muitos de seus componentes serão relativamente genéricos, possivelmente envolvendo apenas um elemento como um _input_ ou um botão. Às vezes, nos referimos a eles como [componentes base](../style-guide/#nomes-de-componentes-base-fortemente-recomendado) e eles tendem a ser usados ​​com muita frequência em seus componentes.
 
-The result is that many components may include long lists of base components:
+O resultado é que muitos componentes podem incluir longas listas de componentes base:
 
 ```js
 import BaseButton from './BaseButton.vue'
@@ -19,7 +19,7 @@ export default {
 }
 ```
 
-Just to support relatively little markup in a template:
+Apenas para suportar relativamente pouca marcação em um _template_:
 
 ```html
 <BaseInput v-model="searchText" @keydown.enter="search" />
@@ -28,7 +28,7 @@ Just to support relatively little markup in a template:
 </BaseButton>
 ```
 
-Fortunately, if you're using webpack (or [Vue CLI](https://github.com/vuejs/vue-cli), which uses webpack internally), you can use `require.context` to globally register only these very common base components. Here's an example of the code you might use to globally import base components in your app's entry file (e.g. `src/main.js`):
+Felizmente, se você estiver usando webpack (ou [Vue CLI](https://github.com/vuejs/vue-cli), que usa webpack internamente), você pode usar `require.context` para registrar globalmente apenas esses componentes base comuns. Aqui está um exemplo do código que você pode usar para importar globalmente componentes base no arquivo de entrada do seu aplicativo (ex.: `src/main.js`):
 
 ```js
 import { createApp } from 'vue'
@@ -39,22 +39,22 @@ import App from './App.vue'
 const app = createApp(App)
 
 const requireComponent = require.context(
-  // The relative path of the components folder
+  // O caminho relativo da pasta de componentes
   './components',
-  // Whether or not to look in subfolders
+  // Se deve ou não procurar nas subpastas
   false,
-  // The regular expression used to match base component filenames
+  // Expressão regular para encontrar nomes de arquivos de componente base
   /Base[A-Z]\w+\.(vue|js)$/
 )
 
 requireComponent.keys().forEach(fileName => {
-  // Get component config
+  // Obtém a configuração do componente
   const componentConfig = requireComponent(fileName)
 
-  // Get PascalCase name of component
+  // Obtém o nome do componente em PascalCase
   const componentName = upperFirst(
     camelCase(
-      // Gets the file name regardless of folder depth
+      // Obtém o nome do arquivo independente da profundidade da pasta
       fileName
         .split('/')
         .pop()
@@ -64,9 +64,9 @@ requireComponent.keys().forEach(fileName => {
 
   app.component(
     componentName,
-    // Look for the component options on `.default`, which will
-    // exist if the component was exported with `export default`,
-    // otherwise fall back to module's root.
+    // Procura opções do componente em `.default`, que irá
+    // existir se o componente foi exportado com `export default`,
+    // caso contrário, volta para a raiz do módulo.
     componentConfig.default || componentConfig
   )
 })
