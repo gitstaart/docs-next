@@ -1,26 +1,26 @@
 ---
-title: $listeners removed
+title: $listeners removido
 badges:
   - breaking
 ---
 
-# `$listeners` removed <MigrationBadges :badges="$frontmatter.badges" />
+# `$listeners` removido <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visão Geral
 
-The `$listeners` object has been removed in Vue 3. Event listeners are now part of `$attrs`:
+O objeto `$listeners` foi removido no Vue 3. Os escutadores de eventos agora fazem parte do `$attrs`:
 
 ```js
 {
-  text: 'this is an attribute',
-  onClose: () => console.log('close Event triggered')
+  text: 'este é um atributo',
+  onClose: () => console.log('Evento close acionado')
 }
 ```
 
-## 2.x Syntax
+## Sintaxe v2.x
 
-In Vue 2, you can access attributes passed to your components with `this.$attrs`, and event listeners with `this.$listeners`.
-In combination with `inheritAttrs: false`, they allow the developer to apply these attributes and listeners to some other element instead of the root element:
+No Vue 2, você pode acessar atributos passados ​​para seus componentes com `this.$attrs`, e escutadores de eventos com `this.$listeners`.
+Em combinação com `inheritAttrs: false`, eles permitem que o desenvolvedor aplique esses atributos e escutadores a algum outro elemento em vez do elemento raiz:
 
 ```html
 <template>
@@ -35,9 +35,9 @@ In combination with `inheritAttrs: false`, they allow the developer to apply the
 </script>
 ```
 
-## 3.x Syntax
+## Sintaxe v3.x
 
-In Vue 3's virtual DOM, event listeners are now just attributes, prefixed with `on`, and as such are part of the `$attrs` object, so `$listeners` has been removed.
+No DOM virtual do Vue 3, os escutadores de eventos agora são apenas atributos, prefixados com `on`, e como tal são parte do objeto `$attrs`, então `$listeners` foi removido.
 
 ```vue
 <template>
@@ -52,25 +52,25 @@ export default {
 </script>
 ```
 
-If this component received an `id` attribute and a `v-on:close` listener, the `$attrs` object will now look like this:
+Se este componente recebeu um atributo `id` e um escutador `v-on:close`, o objeto `$attrs` agora ficará assim:
 
 ```js
 {
   id: 'my-input',
-  onClose: () => console.log('close Event triggered')
+  onClose: () => console.log('Evento close acionado')
 }
 ```
 
 ## Estratégia de Migração
 
-Remove all usages of `$listeners`.
+Remova todos os usos de `$listeners`.
 
 [Sinalizador na compilação de migração: `INSTANCE_LISTENERS`](migration-build.html#configuracao-de-compatibilidade)
 
-## See also
+## Veja também
 
-- [Relevant RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
-- [Migration guide - `$attrs`includes `class` & `style` ](./attrs-includes-class-style.md)
-- [Migration guide - Changes in the Render Functions API](./render-function-api.md)
-- [Migration guide - New Emits Option](./emits-option.md)
-- [Migration guide - `.native` modifier removed](./v-on-native-modifier-removed.md)
+- [RFC relevante](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
+- [Guia de migração - `$attrs` inclui `class` & `style`](./attrs-includes-class-style.md)
+- [Guia de migração - Alterações na API de Funções de Renderização](./render-function-api.md)
+- [Guia de migração - Nova Opção Emits](./emits-option.md)
+- [Guia de migração - Modificador `.native` removido](./v-on-native-modifier-removed.md)
