@@ -3,17 +3,17 @@ badges:
   - breaking
 ---
 
-# VNode Lifecycle Events <MigrationBadges :badges="$frontmatter.badges" />
+# Eventos de Ciclo de Vida do VNode <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visão Geral
 
-In Vue 2, it was possible to use events to listen for key stages in a component's lifecycle. These events had names that started with the prefix `hook:`, followed by the name of the corresponding lifecycle hook.
+No Vue 2, era possível usar eventos para escutar os principais estágios do ciclo de vida de um componente. Esses eventos tinham nomes que começavam com o prefixo `hook:`, seguido pelo nome do gatilho do ciclo de vida correspondente.
 
-In Vue 3, this prefix has been changed to `vnode-`. In addition, these events are now available for HTML elements as well as components.
+No Vue 3, esse prefixo foi alterado para `vnode-`. Além disso, esses eventos agora estão disponíveis para elementos HTML e componentes.
 
-## 2.x Syntax
+## Sintaxe v2.x
 
-In Vue 2, the event name is the same as the equivalent lifecycle hook, prefixed with `hook:`:
+No Vue 2, o nome do evento é o mesmo que o gatilho do ciclo de vida equivalente, prefixado com `hook:`:
 
 ```html
 <template>
@@ -21,9 +21,9 @@ In Vue 2, the event name is the same as the equivalent lifecycle hook, prefixed 
 </template>
 ```
 
-## 3.x Syntax
+## Sintaxe v3.x
 
-In Vue 3, the event name is prefixed with `vnode-`:
+No Vue 3, o nome do evento é prefixado com `vnode-`:
 
 ```html
 <template>
@@ -31,7 +31,7 @@ In Vue 3, the event name is prefixed with `vnode-`:
 </template>
 ```
 
-Or just `vnode` if you're using camelCase:
+Ou apenas `vnode` se você estiver usando camelCase:
 
 ```html
 <template>
@@ -41,10 +41,10 @@ Or just `vnode` if you're using camelCase:
 
 ## Estratégia de Migração
 
-In most cases it should just require changing the prefix. The lifecycle hooks `beforeDestroy` and `destroyed` have been renamed to `beforeUnmount` and `unmounted` respectively, so the corresponding event names will also need to be updated.
+Na maioria dos casos, deve apenas exigir a alteração do prefixo. Os gatilhos do ciclo de vida `beforeDestroy` e `destroyed` foram renomeados para `beforeUnmount` e `unmounted` respectivamente, então os nomes dos eventos correspondentes também precisarão ser atualizados.
 
 [Sinalizadores na compilação de migração: `INSTANCE_EVENT_HOOKS`](migration-build.html#configuracao-de-compatibilidade)
 
-## See Also
+## Veja também
 
-- [Migration guide - Events API](/guide/migration/events-api.html)
+- [Guia de migração - API de eventos](/guide/migration/events-api.html)

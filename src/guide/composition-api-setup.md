@@ -47,7 +47,7 @@ setup(props) {
 }
 ```
 
-If `title` is an optional prop, it could be missing from `props`. In that case, `toRefs` won't create a ref for `title`. Instead you'd need to use `toRef`:
+Se `title` for um prop opcional, ele pode estar faltando em `props`. Nesse caso, `toRefs` não criará uma referência para `title`. Em vez disso, você precisaria usar `toRef`:
 
 ```js
 // MyBook.vue

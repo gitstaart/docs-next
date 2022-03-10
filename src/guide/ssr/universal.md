@@ -1,29 +1,29 @@
-# Writing Universal Code
+# Escrevendo Código Universal
 
-Before going further, let's take a moment to discuss the constraints when writing "universal" code - that is, code that runs on both the server and the client. Due to use case and platform API differences, the behavior of our code will not be exactly the same when running in different environments. Here we will go over the key things you need to be aware of.
+Antes de prosseguir, vamos discutir as restrições ao escrever código "universal" - ou seja, código que é executado no servidor e no cliente. Devido às diferenças de caso de uso e API de plataforma, o comportamento do nosso código não será exatamente o mesmo quando executado em ambientes diferentes. Aqui vamos falar sobre as principais coisas que você precisa estar ciente.
 
-## Data Reactivity on the Server
+## Reatividade de Dados no Servidor
 
-In a client-only app, every user will be using a fresh instance of the app in their browser. For server-side rendering we want the same: each request should have a fresh, isolated app instance so that there is no cross-request state pollution.
+Em um aplicativo _client-only_, cada usuário usará uma nova instância do aplicativo em seu navegador. Para renderização do lado do servidor, queremos o mesmo: cada solicitação deve ter uma instância de aplicativo nova e isolada para que não haja poluição de estado em solicitação cruzada.
 
-Because the actual rendering process needs to be deterministic, we will also be "pre-fetching" data on the server - this means our application state will be already resolved when we start rendering. This means data reactivity is unnecessary on the server, so it is disabled by default. Disabling data reactivity also avoids the performance cost of converting data into reactive objects.
+Como o processo de renderização real precisa ser determinístico, também estaremos "_pre-fetching_" dados no servidor - isso significa que o estado do nosso aplicativo já estará resolvido quando iniciarmos a renderização. Isso significa que a reatividade de dados é desnecessária no servidor, então está desabilitada por padrão. A desativação da reatividade de dados também evita o custo de desempenho da conversão de dados em objetos reativos.
 
-## Component Lifecycle Hooks
+## Gatilhos de Ciclo de Vida do Componente
 
-Since there are no dynamic updates, the only [lifecycle hooks](/guide/instance.html#lifecycle-hooks) that will be called during SSR are `beforeCreate` and `created`. This means any code inside other lifecycle hooks such as `beforeMount` or `mounted` will only be executed on the client.
+Como não há atualizações dinâmicas, os únicos [gatilhos de ciclo de vida](/guide/instance.html#gatilhos-de-ciclo-de-vida) que serão chamados durante o SSR são `beforeCreate` e `created`. Isso significa que qualquer código dentro de outros gatilhos de ciclo de vida, como `beforeMount` ou `mounted`, só serão executados no cliente.
 
-Another thing to note is that you should avoid code that produces global side effects in `beforeCreate` and `created`, for example setting up timers with `setInterval`. In client-side only code we may setup a timer and then tear it down in `beforeUnmount` or `unmounted`. However, because the destroy hooks will not be called during SSR, the timers will stay around forever. To avoid this, move your side-effect code into `beforeMount` or `mounted` instead.
+Outra coisa a notar é que você deve evitar código que produza efeitos colaterais globais em `beforeCreate` e `created`, por exemplo configurando temporizadores com `setInterval`. No código _client-side_ podemos configurar um temporizador e, em seguida, destruí-lo em `beforeUnmount` ou `unmounted`. No entanto, como os gatilhos de destruição não serão chamados durante o SSR, os temporizadores permanecerão para sempre. Para evitar isso, mova seu código de efeito colateral para `beforeMount` ou `mounted`.
 
-## Access to Platform-Specific APIs
+## Acesso a APIs Específicas da Plataforma
 
-Universal code cannot assume access to platform-specific APIs, so if your code directly uses browser-only globals like `window` or `document`, they will throw errors when executed in Node.js, and vice-versa.
+Código universal não pode assumir o acesso a APIs específicas de uma plataforma, portanto, se seu código usar diretamente globais somente do navegador, como `window` ou `document`, gerará erros quando executado no Node.js e vice-versa.
 
-For tasks shared between server and client but using different platform APIs, it's recommended to wrap the platform-specific implementations inside a universal API, or use libraries that do this for you. For example, [axios](https://github.com/axios/axios) is an HTTP client that exposes the same API for both server and client.
+Para tarefas compartilhadas entre servidor e cliente, mas usando APIs de plataforma diferentes, é recomendável agrupar as implementações específicas da plataforma dentro de uma API universal ou usar bibliotecas que fazem isso para você. Por exemplo, [axios](https://github.com/axios/axios) é um cliente HTTP que expõe a mesma API para servidor e cliente.
 
-For browser-only APIs, the common approach is to lazily access them inside client-only lifecycle hooks.
+Para APIs somente do navegador, a abordagem comum é acessá-las preguiçosamente dentro de gatilhos de ciclo de vida _client-only_.
 
-Note that if a 3rd party library is not written with universal usage in mind, it could be tricky to integrate it into an server-rendered app. You _might_ be able to get it working by mocking some of the globals, but it would be hacky and may interfere with the environment detection code of other libraries.
+Observe que, se uma biblioteca de terceiros não for escrita com o uso universal em mente, pode ser complicado integrá-la em um aplicativo renderizado pelo servidor. Você _pode_ ser capaz de fazê-lo funcionar simulando alguns dos globais, mas seria _hacky_ e pode interferir no código de detecção de ambiente de outras bibliotecas.
 
-## Custom Directives
+## Diretivas Customizadas
 
-Most [custom directives](/guide/custom-directive.html#custom-directives) directly manipulate the DOM, which will cause errors during SSR. We recommend to prefer using components as the abstraction mechanism instead of directives.
+A maioria das [diretivas customizadas](/guide/custom-directive.html#diretivas-customizadas) manipula diretamente o DOM, o que causará erros durante o SSR. Recomendamos usar componentes como mecanismo de abstração em vez de diretivas.

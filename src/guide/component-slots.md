@@ -2,7 +2,7 @@
 
 > Esta página assume que você já leu o [Básico sobre Componentes](component-basics.md). Se você não está familizariado com componentes, recomendamos lê-lo primeiro.
 
-<VideoLesson href="https://vueschool.io/lessons/vue-3-component-slots?friend=vuejs" title="Free Vue.js Slots lesson">Learn slot basics with a free lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/vue-3-component-slots?friend=vuejs" title="Aula Gratuita Sobre Slots em Vue.js">Aprenda o básico sobre slots com uma aula gratuita na Vue School</VideoLesson>
 
 ## Conteúdo do _Slot_
 

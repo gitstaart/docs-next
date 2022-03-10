@@ -4,7 +4,7 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#3eaf7c",
-  "description": "Vue.js framework documentation",
+  "description": "Documentação do framework Vue.js",
   "icons": [
     {
       "src": "images/icons/android-icon-48x48.png",

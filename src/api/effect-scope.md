@@ -1,25 +1,25 @@
-# Effect Scope API <Badge text="3.2+" />
+# API do Escopo de Efeito <Badge text="3.2+" />
 
 :::info
-Effect scope is an advanced API primarily intended for library authors. For details on how to leverage this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+Escopo de efeito é uma API avançada destinada principalmente a autores de bibliotecas. Para obter detalhes sobre como aproveitar essa API, consulte o [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md) correspondente.
 :::
 
 ## `effectScope`
 
-Creates an effect scope object which can capture the reactive effects (e.g. computed and watchers) created within it so that these effects can be disposed together.
+Cria um objeto de escopo de efeito que pode capturar os efeitos reativos (por exemplo, computados e observadores) criados dentro dele para que esses efeitos possam ser descartados juntos.
 
-**Typing:**
+**Tipando:**
 
 ```ts
 function effectScope(detached?: boolean): EffectScope
 
 interface EffectScope {
-  run<T>(fn: () => T): T | undefined // undefined if scope is inactive
+  run<T>(fn: () => T): T | undefined // indefinido se o escopo estiver inativo
   stop(): void
 }
 ```
 
-**Example:**
+**Exemplo:**
 
 ```js
 const scope = effectScope()
@@ -29,18 +29,18 @@ scope.run(() => {
 
   watch(doubled, () => console.log(doubled.value))
 
-  watchEffect(() => console.log('Count: ', doubled.value))
+  watchEffect(() => console.log('Contagem: ', doubled.value))
 })
 
-// to dispose all effects in the scope
+// para descartar todos os efeitos no escopo
 scope.stop()
 ```
 
 ## `getCurrentScope`
 
-Returns the current active [effect scope](#effectscope) if there is one.
+Retorna o [escopo de efeito](#effectscope) atualmente ativo se houver um.
 
-**Typing:**
+**Tipando:**
 
 ```ts
 function getCurrentScope(): EffectScope | undefined
@@ -48,11 +48,11 @@ function getCurrentScope(): EffectScope | undefined
 
 ## `onScopeDispose`
 
-Registers a dispose callback on the current active [effect scope](#effectscope). The callback will be invoked when the associated effect scope is stopped.
+Registra um _callback_ de descarte no [escopo de efeito](#effectscope) atualmente ativo. O _callback_ será invocado quando o escopo de efeito associado for interrompido.
 
-This method can be used as a non-component-coupled replacement of `onUnmounted` in reusable composition functions, since each Vue component's `setup()` function is also invoked in an effect scope.
+Este método pode ser usado como um substituto de `onUnmounted` "não acoplado a componentes" em funções de composição reutilizáveis, uma vez que a função `setup()` de cada componente Vue também é invocada em um escopo de efeito.
 
-**Typing:**
+**Tipando:**
 
 ```ts
 function onScopeDispose(fn: () => void): void

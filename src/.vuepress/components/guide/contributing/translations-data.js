@@ -1,11 +1,11 @@
 export const labels = {
-  language: 'Language',
+  language: 'Linguagem',
   github: 'GitHub',
-  lastCommit: 'Last commit',
-  last90Days: 'Last 90 days',
-  loadDetails: 'Load Details',
+  lastCommit: 'Último commit',
+  last90Days: 'Últimos 90 dias',
+  loadDetails: 'Carregar Detalhes',
   commits: 'commits',
-  loading: 'Loading...'
+  loading: 'Carregando...'
 }
 
 // Repos are in alphabetical order by the language code

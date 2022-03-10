@@ -2,7 +2,7 @@
 
 > Esta página assume que você já leu o [Básico sobre Componentes](component-basics.md). Leia lá primeiro caso seja novo com componentes.
 
-<VideoLesson href="https://vueschool.io/lessons/vue-3-reusable-components-with-props?friend=vuejs" title="Free Vue.js Component Props Lesson">Learn how component props work with a free lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/vue-3-reusable-components-with-props?friend=vuejs" title="Lição Gratuita sobre Props de Componentes Vue.js">Aprenda como props de componentes funcionam com uma aula gratuita na Vue School</VideoLesson>
 
 ## Tipos de Propriedades
 

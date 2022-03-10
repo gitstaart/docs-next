@@ -3,18 +3,18 @@ badges:
   - breaking
 ---
 
-# Transition as Root <MigrationBadges :badges="$frontmatter.badges" />
+# `transition` como Raiz <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visão Geral
 
-Using a `<transition>` as a component's root will no longer trigger transitions when the component is toggled from the outside.
+O uso de um `<transition>` como raiz de um componente não acionará mais transições quando o componente for alternado de fora.
 
-## 2.x Behavior
+## Comportamento v2.x
 
-In Vue 2, it was possible to trigger a transition from outside a component by using a `<transition>` as the component's root:
+No Vue 2, era possível acionar uma transição de fora de um componente usando um `<transition>` como raiz do componente:
 
 ```html
-<!-- modal component -->
+<!-- componente modal -->
 <template>
   <transition>
     <div class="modal"><slot/></div>
@@ -23,19 +23,19 @@ In Vue 2, it was possible to trigger a transition from outside a component by us
 ```
 
 ```html
-<!-- usage -->
-<modal v-if="showModal">hello</modal>
+<!-- uso -->
+<modal v-if="showModal">olá</modal>
 ```
 
-Toggling the value of `showModal` would trigger a transition inside the modal component.
+Alternar o valor de `showModal` acionaria uma transição dentro do componente modal.
 
-This worked by accident, not by design. A `<transition>` is supposed to be triggered by changes to its children, not by toggling the `<transition>` itself.
+Isso funcionou por acidente, não por design. Uma `<transition>` deve ser desencadeada por alterações em seus filhos, não alternando a própria `<transition>`.
 
-This quirk has now been removed.
+Esta peculiaridade foi removida.
 
 ## Estratégia de Migração
 
-A similar effect can be achieved by passing a prop to the component instead:
+Um efeito semelhante pode ser obtido passando uma prop para o componente:
 
 ```vue
 <template>
@@ -51,11 +51,11 @@ export default {
 ```
 
 ```html
-<!-- usage -->
-<modal :show="showModal">hello</modal>
+<!-- uso -->
+<modal :show="showModal">olá</modal>
 ```
 
-## See also
+## Veja também
 
-- [Some transition classes got a rename](/guide/migration/transition.html)
-- [`<TransitionGroup>` now renders no wrapper element by default](/guide/migration/transition-group.html)
+- [Algumas classes de transição foram renomeadas](/guide/migration/transition.html)
+- [`<TransitionGroup>` agora não renderiza nenhum elemento _wrapper_ por padrão](/guide/migration/transition-group.html)

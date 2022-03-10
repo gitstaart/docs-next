@@ -4,15 +4,15 @@
       <h1>404</h1>
 
       <blockquote>
-        <p>Whoops! This page doesn't exist.</p>
+        <p>Opa! Esta página não existe.</p>
       </blockquote>
 
       <p v-show="isTranslation">
-        New pages are added to the documentation all the time. This page might not be included in all of the translations yet.
+        Novas páginas são adicionadas à documentação o tempo todo. Esta página pode não estar incluída em todas as traduções ainda.
       </p>
 
       <RouterLink to="/">
-        Take me home.
+        Me leve para home.
       </RouterLink>
     </div>
   </div>

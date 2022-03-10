@@ -1,25 +1,25 @@
 ---
-title: 'Mount API changes'
+title: 'Alterações na API de Montagem'
 badges:
   - breaking
 ---
 
-# Mounted application does not replace the element <MigrationBadges :badges="$frontmatter.badges" />
+# O aplicativo montado não substitui o elemento <MigrationBadges :badges="$frontmatter.badges" />
 
-## Overview
+## Visão Geral
 
-In Vue 2.x, when mounting an application that has a `template`, the rendered content replaces the element we mount to. In Vue 3.x, the rendered application is appended as a child of such an element, replacing element's `innerHTML`.
+No Vue 2.x, ao montar uma aplicação que tem um `template`, o conteúdo renderizado substitui o elemento em que montamos. No Vue 3.x, o aplicativo renderizado é anexado como filho de tal elemento, substituindo o `innerHTML` do elemento.
 
-## 2.x Syntax
+## Sintaxe v2.x
 
-In Vue 2.x, we pass an HTML element selector to `new Vue()` or `$mount`:
+No Vue 2.x, passamos um seletor de elemento HTML para `new Vue()` ou `$mount`:
 
 ```js
 new Vue({
   el: '#app',
   data() {
     return {
-      message: 'Hello Vue!'
+      message: 'Olá Vue!'
     }
   },
   template: `
@@ -27,11 +27,11 @@ new Vue({
   `
 })
 
-// or
+// ou
 const app = new Vue({
   data() {
     return {
-      message: 'Hello Vue!'
+      message: 'Olá Vue!'
     }
   },
   template: `
@@ -42,33 +42,33 @@ const app = new Vue({
 app.$mount('#app')
 ```
 
-When we mount this application to the page that has a `div` with the passed selector (in our case, it's `id="app"`):
+Quando montamos esta aplicação na página que tem um `div` com o seletor passado (no nosso caso, é `id="app"`):
 
 ```html
 <body>
   <div id="app">
-    Some app content
+    Algum conteúdo de aplicativo
   </div>
 </body>
 ```
 
-in the rendered result, the mentioned `div` will be replaced with the rendered application content:
+no resultado renderizado, o `div` mencionado será substituído pelo conteúdo do aplicativo renderizado:
 
 ```html
 <body>
-  <div id="rendered">Hello Vue!</div>
+  <div id="rendered">Olá Vue!</div>
 </body>
 ```
 
-## 3.x Syntax
+## Sintaxe v3.x
 
-In Vue 3.x, when we mount an application, its rendered content will replace the `innerHTML` of the element we pass to `mount`:
+No Vue 3.x, quando montamos uma aplicação, seu conteúdo renderizado substituirá o `innerHTML` do elemento que passamos para `mount`:
 
 ```js
 const app = Vue.createApp({
   data() {
     return {
-      message: 'Hello Vue!'
+      message: 'Olá Vue!'
     }
   },
   template: `
@@ -79,12 +79,12 @@ const app = Vue.createApp({
 app.mount('#app')
 ```
 
-When this app is mounted to the page that has a `div` with `id="app"`, this will result in:
+Quando este aplicativo é montado na página que tem um `div` com `id="app"`, isso resultará em:
 
 ```html
 <body>
   <div id="app" data-v-app="">
-    <div id="rendered">Hello Vue!</div>
+    <div id="rendered">Olá Vue!</div>
   </div>
 </body>
 ```
@@ -93,6 +93,6 @@ When this app is mounted to the page that has a `div` with `id="app"`, this will
 
 [Sinalizador na compilação de migração: `GLOBAL_MOUNT_CONTAINER`](migration-build.html#configuracao-de-compatibilidade)
 
-## See Also
+## Veja também
 
-- [`mount` API](/api/application-api.html#mount)
+- [API `mount`](/api/application-api.html#mount)

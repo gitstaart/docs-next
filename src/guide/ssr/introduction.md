@@ -1,47 +1,47 @@
-# Server-Side Rendering Guide
+# Guia de Renderização do Lado do Servidor
 
-> This guide is currently under active development
+> Este guia atualmente está sob ativo desenvolvimento
 
-## What is Server-Side Rendering (SSR)?
+## O que é Renderização do Lado do Servidor (SSR)?
 
-Vue.js is a framework for building client-side applications. By default, Vue components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive application on the client.
+Vue.js é uma framework para construir aplicativos _client-side_. Por padrão, os componentes Vue produzem e manipulam o DOM no navegador como saída. No entanto, também é possível renderizar os mesmos componentes em strings HTML no servidor, enviá-los diretamente para o navegador e, finalmente, "hidratar" a marcação estática em um aplicativo totalmente interativo no cliente.
 
-A server-rendered Vue.js application can also be considered "isomorphic" or "universal". This means that the majority of your app's code runs on both the server **and** the client.
+Um aplicativo Vue.js renderizado pelo servidor também pode ser considerado "isomórfico" ou "universal". Isso significa que a maior parte do código do seu aplicativo é executada no servidor **e** no cliente.
 
-## Why SSR?
+## Por que SSR?
 
-Compared to a traditional SPA (Single-Page Application), the advantage of SSR primarily lies in:
+Comparado a um SPA (_Single-Page Application_) tradicional, a vantagem do SSR reside principalmente em:
 
-- Better search engine optimization (SEO), as the search engine crawlers will directly see the fully rendered page.
+- Melhor otimização de mecanismos de pesquisa (SEO), pois os rastreadores de mecanismos de pesquisa verão diretamente a página totalmente renderizada.
 
-  Note that as of now, Google and Bing can index synchronous JavaScript applications just fine. Synchronous being the key word there. If your app starts with a loading spinner, then fetches content via API call, the crawler will not wait for you to finish. This means if you have content fetched asynchronously on pages where SEO is important, SSR might be necessary.
+  Observe que, a partir de agora, o Google e o Bing podem indexar aplicativos JavaScript síncronos muito bem. Síncrono sendo a palavra-chave lá. Se seu aplicativo começar com um spinner de carregamento e, em seguida, buscar conteúdo por meio de chamada de API, o rastreador não aguardará que você termine. Isso significa que, se você tiver conteúdo obtido de forma assíncrona em páginas em que o SEO é importante, o SSR pode ser necessário.
 
-- Faster time-to-content, especially on the slow Internet connection or slow devices. Server-rendered markup doesn't need to wait until all JavaScript has been downloaded and executed to be displayed, so your user will see a fully-rendered page sooner. This generally results in better user experience, and can be critical for applications where time-to-content is directly associated with the conversion rate.
+- "Tempo até o conteúdo" mais rápido, especialmente na conexão lenta com a Internet ou em dispositivos lentos. A marcação renderizada pelo servidor não precisa esperar até que todo o JavaScript seja baixado e executado para ser exibida, para que seu usuário veja uma página totalmente renderizada mais cedo. Isso geralmente resulta em uma melhor experiência do usuário e pode ser fundamental para aplicativos em que o tempo de conteúdo está diretamente associado à taxa de conversão.
 
-There are also some trade-offs to consider when using SSR:
+Há também algumas compensações a serem consideradas ao usar o SSR:
 
-- Development constraints. Browser-specific code can only be used inside certain lifecycle hooks; some external libraries may need special treatment to be able to run in a server-rendered app.
+- Restrições de desenvolvimento. O código específico do navegador só pode ser usado dentro de determinados gatilhos de ciclo de vida; algumas bibliotecas externas podem precisar de tratamento especial para serem executadas em um aplicativo renderizado pelo servidor.
 
-- More involved build setup and deployment requirements. Unlike a fully static SPA that can be deployed on any static file server, a server-rendered app requires an environment where a Node.js server can run.
+- Requisitos mais complexos de deploy e ambiente de compilação. Ao contrário de um SPA totalmente estático que pode ser implantado em qualquer servidor de arquivos estático, um aplicativo renderizado pelo servidor requer um ambiente em que um servidor Node.js possa ser executado.
 
-- More server-side load. Rendering a full app in Node.js is going to be more CPU-intensive than just serving static files, so if you expect high traffic, be prepared for corresponding server load and wisely employ caching strategies.
+- Mais carga do lado do servidor. A renderização de um aplicativo completo em Node.js exigirá mais da CPU do que apenas servir arquivos estáticos, portanto, se você espera alto tráfego, esteja preparado para a carga correspondente no servidor e empregue estratégias de armazenamento em cache com sabedoria.
 
-Before using SSR for your application, the first question you should ask is whether you actually need it. It mostly depends on how important time-to-content is for your application. For example, if you are building an internal dashboard where an extra few hundred milliseconds on the initial load doesn't matter that much, SSR would be overkill. However, in cases where time-to-content is absolutely critical, SSR can help you achieve the best possible initial load performance.
+Antes de usar o SSR para seu aplicativo, a primeira pergunta que você deve fazer é se você realmente precisa dele. Depende principalmente de quão importante é o "tempo até o conteúdo" para seu aplicativo. Por exemplo, se você estiver criando um dashboard interno em que algumas centenas de milissegundos extras na carga inicial não importam muito, SSR seria um exagero. No entanto, nos casos em que o "tempo até o conteúdo" é absolutamente crítico, o SSR pode ajudá-lo a obter o melhor desempenho de carregamento inicial possível.
 
-## SSR vs Prerendering
+## SSR vs Pré-renderização
 
-If you're only investigating SSR to improve the SEO of a handful of marketing pages (e.g. `/`, `/about`, `/contact`, etc), then you probably want **prerendering** instead. Rather than using a web server to compile HTML on-the-fly, prerendering generates static HTML files for specific routes at build time. The advantage is setting up prerendering is much simpler and allows you to keep your frontend as a fully static site.
+Se você está apenas investigando o SSR para melhorar o SEO de um punhado de páginas de marketing (ex.: `/`, `/about`, `/contact`, etc), então você provavelmente quer a **pré-renderização**. Em vez de usar um servidor web para compilar HTML dinamicamente, a pré-renderização gera arquivos HTML estáticos para rotas específicas em tempo de compilação. A vantagem é que configurar a pré-renderização é muito mais simples e permite que você mantenha seu frontend como um site totalmente estático.
 
-If you're using [webpack](https://webpack.js.org/), you can add prerendering with the [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). It's been extensively tested with Vue apps.
+Se você estiver usando o [webpack](https://webpack.js.org/), poderá adicionar a pré-renderização com o [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Este foi amplamente testado com aplicativos Vue.
 
-## About This Guide
+## Sobre Este Guia
 
-[//]: # 'TODO: This guide is focused on server-rendered Single-Page Applications using Node.js as the server. Mixing Vue SSR with other backend setups is a topic of its own and briefly discussed in a [dedicated section].'
+[//]: # 'TODO: Este guia é focado em Single-Page Applications renderizados pelo servidor usando Node.js como servidor. Misturar o Vue SSR com outras configurações de backend é um tópico próprio e discutido brevemente em uma [seção dedicada].'
 
-This guide will be very in-depth and assumes you are already familiar with Vue.js itself, and have a decent working knowledge of Node.js and webpack.
+Este guia será muito aprofundado e pressupõe que você já esteja familiarizado com o próprio Vue.js e tenha um conhecimento de trabalho decente de Node.js e webpack.
 
-If you prefer a higher-level solution that provides a smooth out-of-the-box experience, you should probably give [Nuxt.js](https://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the boilerplate, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. Regardless, it would still be beneficial to read through this guide to understand better how things work together.
+Se você preferir uma solução de nível superior que forneça uma experiência suave e pronta para uso, provavelmente deveria experimentar o [Nuxt.js](https://nuxtjs.org/). Ele é construído sobre a mesma stack Vue, mas abstrai muito do _boilerplate_ e fornece alguns recursos extras, como geração de site estático. No entanto, pode não ser adequado ao seu caso de uso se você precisar de um controle mais direto da estrutura do seu aplicativo. Independentemente disso, ainda seria benéfico ler este guia para entender melhor como as coisas funcionam juntas.
 
-[//]: # 'TODO: As you read along, it would be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide'
+[//]: # 'TODO: Enquanto você lê, seria útil consultar a [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/) oficial, que faz uso de a maioria das técnicas abordadas neste guia'
 
-Finally, note that the solutions in this guide are not definitive - we've found them to be working well for us, but that doesn't mean they cannot be improved. They might get revised in the future - and feel free to contribute by submitting pull requests!
+Por fim, observe que as soluções neste guia não são definitivas - descobrimos que estão funcionando bem para nós, mas isso não significa que não possam ser melhoradas. Elas podem ser revisados ​​no futuro - e sinta-se à vontade para contribuir enviando _pull requests_!
