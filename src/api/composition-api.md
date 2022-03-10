@@ -96,7 +96,7 @@ Uma opção de componente que é executada **antes** do componente ser criado, u
   }
   ```
 
-  If you return a render function then you can't return any other properties. If you need to expose properties so that they can be accessed externally, e.g. via a `ref` in the parent, you can use `expose`:
+  Se você retornar uma função de renderização, não poderá retornar nenhuma outra propriedade. Se você precisar expor propriedades para que possam ser acessadas externamente, por exemplo, através de um `ref` no pai, você pode usar `expose`:
 
   ```js
   // MyBook.vue
@@ -106,12 +106,12 @@ Uma opção de componente que é executada **antes** do componente ser criado, u
   export default {
     setup(props, { expose }) {
       const reset = () => {
-        // Some reset logic
+        // Alguma lógica de reset
       }
 
-      // Expose can only be called once.
-      // If you need to expose multiple properties, they must all
-      // be included in the object passed to expose. 
+      // Expose só pode ser chamado uma vez.
+      // Se você precisar expor várias propriedades, todas elas devem
+      // ser incluídas no objeto passado para expose.
       expose({
         reset
       })

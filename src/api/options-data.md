@@ -305,22 +305,22 @@
 
 ## expose <Badge text="3.2+" />
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Details:**
+- **Detalhes:**
 
-  A list of properties to expose on the public component instance.
+  Uma lista de propriedades a serem expostas na instância pública do componente.
 
-  By default, the public instance accessed via [`$refs`](/api/instance-properties.html#refs), [`$parent`](/api/instance-properties.html#parent), or [`$root`](/api/instance-properties.html#root) is the same as the internal component instance that's used by the template. The `expose` option restricts the properties that can be accessed via the public instance.
+  Por padrão, a instância pública acessada via [`$refs`](/api/instance-properties.html#refs), [`$parent`](/api/instance-properties.html#parent) ou [`$root`](/api/instance-properties.html#root) é a mesma que a instância do componente interno usado pelo _template_. A opção `expose` restringe as propriedades que podem ser acessadas através da instância pública.
 
-  Properties defined by Vue itself, such as `$el` and `$parent`, will always be available on the public instance and don't need to be listed.
+  Propriedades definidas pelo próprio Vue, como `$el` e `$parent`, sempre estarão disponíveis na instância pública e não precisam ser listadas.
 
-- **Usage:**
+- **Uso:**
 
   ```js
   export default {
-    // increment will be exposed but count
-    // will only be accessible internally
+    // o increment será exposto, mas count
+    // só será acessível internamente
     expose: ['increment'],
 
     data() {
@@ -337,4 +337,4 @@
   }
   ```
 
-- **See also:** [defineExpose](/api/sfc-script-setup.html#defineexpose)
+- **Ver também:** [defineExpose](/api/sfc-script-setup.html#defineexpose)
