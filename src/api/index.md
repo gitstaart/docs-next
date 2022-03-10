@@ -1,15 +1,15 @@
 # API
 
-The Vue.js API contains the following categories:
+A API do Vue.js contém as seguintes categorias:
 
-- [Application Config](/api/application-config.html)
-- [Application API](/api/application-api.html)
-- [Global API](/api/global-api.html)
-- [Options API](/api/options-api.html)
-- [Instance Properties](/api/instance-properties.html)
-- [Instance Methods](/api/instance-methods.html)
-- [Directives](/api/directives.html)
-- [Special Attributes](/api/special-attributes.html)
-- [Built-in Components](/api/built-in-components.html)
-- [Reactivity API](/api/reactivity-api.html)
-- [Composition API](/api/composition-api.html)
+- [Configuração da Aplicação](/api/application-config.html)
+- [API da Aplicação](/api/application-api.html)
+- [API Global](/api/global-api.html)
+- [API de Opções](/api/options-api.html)
+- [Propriedades da Instância](/api/instance-properties.html)
+- [Métodos de Instância](/api/instance-methods.html)
+- [Diretivas](/api/directives.html)
+- [Atributos Especiais](/api/special-attributes.html)
+- [Componentes Integrados](/api/built-in-components.html)
+- [API de Reatividade](/api/reactivity-api.html)
+- [API de Composição](/api/composition-api.html)

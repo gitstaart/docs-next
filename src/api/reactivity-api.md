@@ -1,8 +1,8 @@
-# Reactivity API
+# API de Reatividade
 
-The Reactivity API contains the following sections:
+A API de Reatividade contém as seguintes seções:
 
-- [Basic Reactivity APIs](/api/basic-reactivity.html)
+- [API's Básicas de Reatividade](/api/basic-reactivity.html)
 - [Refs](/api/refs-api.html)
-- [Computed and watch](/api/computed-watch-api.html)
-- [Effect Scope API](/api/effect-scope.html)
+- [Dados Computados e Observadores](/api/computed-watch-api.html)
+- [API do Escopo de Efeito](/api/effect-scope.html)
