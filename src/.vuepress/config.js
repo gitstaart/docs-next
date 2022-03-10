@@ -433,11 +433,11 @@ module.exports = {
         items: [
           {
             text: 'Doações Únicas',
-            link: '/support-vuejs/#one-time-donations'
+            link: '/support-vuejs/#doacoes-unicas'
           },
           {
             text: 'Ajuda Recorrente',
-            link: '/support-vuejs/#recurring-pledges'
+            link: '/support-vuejs/#doacoes-recorrentes'
           },
           {
             text: 'Loja de Camisetas',
@@ -477,7 +477,7 @@ module.exports = {
           },
           {
             text: 'Mais Traduções',
-            link: '/guide/contributing/translations#community-translations'
+            link: '/guide/contributing/translations#traducoes-da-comunidade'
           }
         ]
       }
