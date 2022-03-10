@@ -168,9 +168,9 @@ export default {
 }
 ```
 
-Returning a render function prevents us from returning anything else. Internally that shouldn't be a problem, but it can be problematic if we want to expose methods of this component to the parent component via template refs.
+Retornar uma função de renderização nos impede de retornar qualquer outra coisa. Internamente, isso não deve ser um problema, mas pode ser problemático se quisermos expor métodos desse componente ao componente pai por meio de refs de _template_.
 
-We can solve this problem by calling `expose`, passing it an object that defines the properties that should be available on the external component instance:
+Podemos resolver este problema chamando `expose`, passando-lhe um objeto que define as propriedades que devem estar disponíveis na instância externa do componente:
 
 ```js
 import { h, ref } from 'vue'
@@ -189,7 +189,7 @@ export default {
 }
 ```
 
-The `increment` method would then be available in the parent component via a template ref.
+O método `increment` estaria então disponível no componente pai através de um ref de _template_.
 
 ## Uso do `this`
 

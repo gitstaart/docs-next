@@ -64,15 +64,15 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
   O registro não será necessário se você passar o próprio componente para `is` ao invés de seu nome.
 
-- **Usage with VNodes:**
+- **Uso com VNodes:**
 
-  In advanced use cases, it can sometimes be useful to render an existing VNode via a template. Using a `<component>` makes this possible, but it should be seen as an escape hatch, used to avoid rewriting the entire template as a `render` function.
+  Em casos de uso avançados, às vezes pode ser útil renderizar um VNode existente por meio de um _template_. Usar um `<component>` torna isso possível, mas deve ser visto como uma válvula de escape, usada para evitar reescrever o _template_ inteiro como uma função `render`.
 
   ```html
   <component :is="vnode" :key="aSuitableKey" />
   ```
 
-  A caveat of mixing VNodes and templates in this way is that you need to provide a suitable `key` attribute. The VNode will be considered static, so any updates will be ignored unless the `key` changes. The `key` can be on the VNode or the `<component>` tag, but either way it must change every time you want the VNode to re-render. This caveat doesn't apply if the nodes have different types, e.g. changing a `span` to a `div`.
+  Uma ressalva de misturar VNodes e _templates_ dessa maneira é que você precisa fornecer um atributo `key` adequado. O VNode será considerado estático, portanto, quaisquer atualizações serão ignoradas, a menos que a `key` seja alterada. A `key` pode estar no VNode ou na tag `<component>`, mas de qualquer forma ela deve mudar toda vez que você quiser que o VNode seja renderizado novamente. Esta ressalva não se aplica se os nós tiverem tipos diferentes, por exemplo, alterando um `span` para um `div`.
 
 - **Ver também:** [Componentes Dinâmicos](../guide/component-dynamic-async.html)
 

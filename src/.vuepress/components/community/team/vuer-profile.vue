@@ -16,7 +16,7 @@
       <h3 :data-official-title="profile.title">{{ profile.name }}</h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Core focus</dt>
+          <dt>Focado em</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -26,7 +26,7 @@
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>ECOSSISTEMA</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -51,17 +51,17 @@
             About
             <span
               v-if="profile.distanceInKm <= 150"
-              :title="`${profile.name} is close enough to commute to your location.`"
+              :title="`${profile.name} está perto o suficiente para se deslocar até a sua localização.`"
               class="highlighted"
-            >{{ textDistance }} away</span>
-            <template v-else>{{ textDistance }} away</template>
-            in {{ profile.city }}
+            >{{ textDistance }} de distância</span>
+            <template v-else>{{ textDistance }} de distância</template>
+            em {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">City</span>
+            <span class="sr-only">Cidade</span>
           </dt>
           <dd>
             {{ profile.city }}
@@ -70,7 +70,7 @@
         <template v-if="profile.languages">
           <dt>
             <i class="fa fa-globe"></i>
-            <span class="sr-only">Languages</span>
+            <span class="sr-only">Idiomas</span>
           </dt>
           <dd class="language-list">
             <ul>

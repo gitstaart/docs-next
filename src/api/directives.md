@@ -35,7 +35,7 @@
 - **Exemplo:**
 
   ```html
-  <div v-html="'<h1>Hello World</h1>'"></div>
+  <div v-html="'<h1>Olá Mundo</h1>'"></div>
   ```
 
 - **Ver também:** [Sintaxe de Templates - Interpolações](../guide/template-syntax.html#raw-html)

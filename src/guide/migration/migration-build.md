@@ -155,7 +155,7 @@ O fluxo de trabalho a seguir percorre as etapas de migração de um aplicativo V
 
    </details>
 
-4. If you are using TypeScript, you will also need to modify `vue`'s typing to expose the default export (which is no longer present in Vue 3) by adding a `*.d.ts` file with the following:
+4. Se você estiver usando TypeScript, também precisará modificar a tipagem do `vue` para expor a exportação padrão (que não está mais presente no Vue 3) adicionando um arquivo `*.d.ts` com o seguinte:
 
    ```ts
    declare module 'vue' {

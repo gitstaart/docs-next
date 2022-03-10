@@ -2,7 +2,7 @@
   <div>
     <div class="team">
       <h2 id="active-core-team-members">
-        Active Core Team Members
+        Membros Ativos da Equipe Principal
         <GetPositionButton
           v-if="!userPosition"
           @positionRetrieved="setUserPosition"
@@ -11,15 +11,15 @@
       </h2>
 
       <div v-if="errorGettingLocation" class="danger custom-block">
-        <p>Failed to get your location.</p>
+        <p>Falha ao obter sua localização.</p>
       </div>
 
       <p>
-        The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+        A equipe principal de desenvolvimento do Vue e seu ecossistema é guiada por um time internacional, alguns dos quais escolheram estar destacados a seguir.
       </p>
 
       <div v-if="userPosition" class="tip custom-block">
-        <p>The core team have been sorted by their distance from you.</p>
+        <p>A equipe principal foi ordenada de acordo com a distância deles até você.</p>
       </div>
 
       <VuerProfile v-for="profile in members" :key="profile.name" :profile="profile" :use-miles="useMiles"/>
@@ -27,11 +27,11 @@
 
     <div class="team">
       <h2 id="core-team-emeriti">
-        Core Team Emeriti
+        Eméritos da Equipe Principal
       </h2>
 
       <p>
-        Here we honor some no-longer-active core team members who have made valuable contributions in the past.
+        Aqui nós honramos alguns membros da equipe principal que não estão mais ativos, os quais realizaram valiosas contribuições no passado.
       </p>
 
       <VuerProfile v-for="profile in emeriti" :key="profile.name" :profile="profile" :use-miles="useMiles"/>
@@ -39,7 +39,7 @@
 
     <div class="team">
       <h2 id="community-partners">
-        Community Partners
+        Parceiros da Comunidade
         <GetPositionButton
           v-if="!userPosition"
           @positionRetrieved="setUserPosition"
@@ -48,15 +48,15 @@
       </h2>
 
       <div v-if="errorGettingLocation" class="danger custom-block">
-        <p>Failed to get your location.</p>
+        <p>Falha ao obter sua localização.</p>
       </div>
 
       <p>
-        Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+        Alguns membros da comunidade Vue ajudaram tanto a enriquecê-la que merecem menção especial. Nós desenvolvemos uma relação mais intimista com estes parceiros, por vezes coordenando com eles sobre funcionalidades futuras e novidades em geral.
       </p>
 
       <div v-if="userPosition" class="tip custom-block">
-        <p>The community partners have been sorted by their distance from you.</p>
+        <p>Os parceiros da comunidade foram ordenados de acordo com a distância deles até você.</p>
       </div>
 
       <VuerProfile v-for="profile in partners" :key="profile.name" :profile="profile" :use-miles="useMiles"/>
