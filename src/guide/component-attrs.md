@@ -1,7 +1,7 @@
 # Atributos Não-Propriedades
 
-> Esta página assume que você já leu o [Básico sobre Componentes](component-basics.md). Leia lá primeiro se você for novo em componentes.
-
+> Esta página assume que você já leu o [Básico sobre Componentes](component-basics.md). Caso você não tenha lido, dê uma olhada neste link antes.
+>  
 Um atributo de componente não-propriedade é um atributo ou ouvinte de evento que é passado para um componente, mas não tem uma propriedade correspondente definida em [props](component-props.html) ou [emits](component-custom-events.html#defining-custom-events). Os exemplos comuns disto incluem atributos `class`, `style`, e `id`. Você pode acessar esses atributos por meio da propriedade `$attrs`.
 
 ## Herança de Atributos
